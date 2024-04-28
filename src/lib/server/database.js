@@ -1,34 +1,28 @@
 // In a real app, this data would live in a database,
 // rather than in memory. But for now, we cheat.
-const db = new Map();
+const db = [];
 
-export function getTodos(userid) {
-    if (!db.get(userid)) {
-        db.set(userid, [{
-            id: "0",
-            description: '',
-            done: false
-        }]);
-    }
+export function getFeelings() {
 
-    return db.get(userid);
+    console.log(db)
+    return db;
 }
 
-export function createTodo(userid, description) {
-    const todos = db.get(userid);
+export function createFeeling(userid, description) {
 
-    todos.push({
+    db.push({
         id: crypto.randomUUID(),
         description,
-        done: false
+        done: false,
+        userid: userid
     });
 }
 
-export function deleteTodo(userid, todoid) {
-    const todos = db.get(userid);
-    const index = todos.findIndex((todo) => todo.id === todoid);
+export function deleteFeeling(userid, feelingid) {
+    const feelings = db.get(userid);
+    const index = feelings.findIndex((feeling) => feeling.id === feelingid);
 
     if (index !== -1) {
-        todos.splice(index, 1);
+        feelings.splice(index, 1);
     }
 }

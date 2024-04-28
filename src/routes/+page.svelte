@@ -18,10 +18,10 @@
         </label>
     </form>
 
-    <ul class="todos">
-        {#each data.todos.filter((todo) => todo.id !== "0") as todo (todo.id)}
+    <ul class="feelings">
+        {#each data.feelings.filter((feeling) => feeling.id !== "0") as feeling (feeling.id)}
             <li>
-                {todo.description}
+                {feeling.description}
             </li>
         {/each}
     </ul>
