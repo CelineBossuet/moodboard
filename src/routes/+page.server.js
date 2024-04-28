@@ -1,13 +1,10 @@
 import * as db from '$lib/server/database.js';
-import { fail } from '@sveltejs/kit';
+import {fail, redirect} from '@sveltejs/kit';
 
 export function load({ cookies }) {
     console.log(cookies.getAll())
-    let id = cookies.get('userid');
-
-    if (!id) {
-        id = crypto.randomUUID();
-        cookies.set('userid', id, { path: '/' });
+    if (!cookies.get('allowed')) {
+        throw redirect(307, '/welcome');
     }
 
     return {
@@ -16,16 +13,23 @@ export function load({ cookies }) {
 }
 
 export const actions = {
-    default: async ({ cookies, request }) => {
+    login: async ({ cookies}) => {
+        throw redirect(303, '/welcome');
+    },
+    logout: async ({ cookies}) => {
+        cookies.delete('allowed', { path: '/' });
+        cookies.delete('user', { path: '/' });
+        throw redirect(303, '/welcome');
+    },
+    create: async ({ cookies, request }) => {
     const data = await request.formData();
         try {
-            db.createFeeling(cookies.get('userid'), data.get('description'));
+            db.createFeeling(cookies.get('user'), data.get('description'));
         } catch (error) {
             return fail(422, {
                 description: data.get('description'),
                 error: error.message
             });
         }
-
-}
+    }
 };

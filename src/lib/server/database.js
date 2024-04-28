@@ -8,7 +8,7 @@ export function getFeelings() {
     return db;
 }
 
-export function createFeeling(userid, description) {
+export function createFeeling(user, description) {
     if (description === '') {
         throw new Error('You must express your feelings today');
     }
@@ -16,7 +16,7 @@ export function createFeeling(userid, description) {
         id: crypto.randomUUID(),
         description,
         done: false,
-        userid: userid
+        user: user
     });
 }
 

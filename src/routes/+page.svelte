@@ -1,4 +1,5 @@
 <script>
+    import { marked } from 'marked';
     export let data;
     export let form;
 </script>
@@ -13,7 +14,7 @@
         <p class="error">{form.error}</p>
     {/if}
 
-    <form method="POST">
+    <form method="POST" action="?/create">
         <label>
             <input
                     placeholder="How do you feel today?"
@@ -26,9 +27,9 @@
     </form>
 
     <ul class="feelings">
-        {#each data.feelings.filter((feeling) => feeling.id !== "0") as feeling (feeling.id)}
+        {#each data.feelings as feeling (feeling.id)}
             <li>
-                {feeling.description}
+                {@html marked('*'+feeling.user+'* : *'+feeling.description+'*')}
             </li>
         {/each}
     </ul>
@@ -50,15 +51,5 @@
 
     span {
         flex: 1;
-    }
-
-    button {
-        border: none;
-        background-size: 1rem 1rem;
-        cursor: pointer;
-        height: 100%;
-        aspect-ratio: 1;
-        opacity: 0.5;
-        transition: opacity 0.2s;
     }
 </style>
