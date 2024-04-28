@@ -1,5 +1,6 @@
 <script>
     export let data;
+    export let form;
 </script>
 
 <h1>Welcome to the launchpad Moodboard</h1>
@@ -8,12 +9,18 @@
 <div class="centered">
     <h1>The constellation of Feelings</h1>
 
+    {#if form?.error}
+        <p class="error">{form.error}</p>
+    {/if}
+
     <form method="POST">
         <label>
             <input
                     placeholder="How do you feel today?"
                     name="description"
+                    value={form?.description ?? ''}
                     autocomplete="off"
+                    required
             />
         </label>
     </form>

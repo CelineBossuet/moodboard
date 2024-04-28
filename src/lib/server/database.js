@@ -9,7 +9,9 @@ export function getFeelings() {
 }
 
 export function createFeeling(userid, description) {
-
+    if (description === '') {
+        throw new Error('You must express your feelings today');
+    }
     db.push({
         id: crypto.randomUUID(),
         description,
@@ -18,11 +20,10 @@ export function createFeeling(userid, description) {
     });
 }
 
-export function deleteFeeling(userid, feelingid) {
-    const feelings = db.get(userid);
-    const index = feelings.findIndex((feeling) => feeling.id === feelingid);
+export function deleteFeeling(feelingid) {
+    const index = db.findIndex((feeling) => feeling.id === feelingid);
 
     if (index !== -1) {
-        feelings.splice(index, 1);
+        db.splice(index, 1);
     }
 }
