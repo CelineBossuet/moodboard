@@ -4,7 +4,7 @@ const db = [];
 
 export function getFeelings() {
 
-    console.log(db)
+    console.log("db : "+db)
     return db;
 }
 

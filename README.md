@@ -2,17 +2,16 @@
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
-## Creating a project
+## TODO List
+* base de donnée
+* deploy dans une instance
+* chaque user n'a qu'un seul emoji
+* améliorer la page de connexion 
+* améliorer les boutons login, logout (mettre le nom de l'user)
+* bloquer le fait de mettre que du texte
+* rajouter les gif
+* 
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
 
 ## Developing
 
