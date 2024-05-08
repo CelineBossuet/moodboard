@@ -1,6 +1,6 @@
 <script>
-    import { marked } from 'marked';
     import { fly } from 'svelte/transition';
+    import {Button} from "flowbite-svelte";
 
     export let data;
     export let form;
@@ -52,9 +52,16 @@
         message += e.target.textContent
     }
 
+
 </script>
 
-<h1>Welcome to the launchpad Moodboard</h1>
+<h1>Welcome to the launchpad Moodboard
+    <form method="POST" action="?/clear">
+    <button type="submit" class="btn">
+        Clear the board
+    </button>
+    </form>
+</h1>
 <hr>
 
 <div class="centered">

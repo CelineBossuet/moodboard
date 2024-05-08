@@ -2,7 +2,7 @@ import * as db from '$lib/server/database.js';
 import {fail, redirect} from '@sveltejs/kit';
 
 export function load({ cookies }) {
-    // console.log(cookies.getAll())
+    // console.log(cookies.get('user'))
     if (!cookies.get('allowed')) {
         throw redirect(307, '/welcome');
     }
@@ -20,6 +20,9 @@ export const actions = {
         cookies.delete('allowed', { path: '/' });
         cookies.delete('user', { path: '/' });
         throw redirect(303, '/welcome');
+    },
+    clear: async ({}) => {
+        db.deleteFeelings()
     },
     create: async ({ cookies, request }) => {
     const data = await request.formData();

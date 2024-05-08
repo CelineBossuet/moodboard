@@ -1,6 +1,6 @@
 // In a real app, this data would live in a database,
 // rather than in memory. But for now, we cheat.
-const db = [];
+let db = [];
 
 export function getFeelings() {
 
@@ -12,6 +12,8 @@ export function createFeeling(user, description) {
     if (description === '') {
         throw new Error('You must express your feelings today');
     }
+    db = db.filter( feel => feel.user !== user)
+
     db.push({
         id: crypto.randomUUID(),
         description,
@@ -20,10 +22,6 @@ export function createFeeling(user, description) {
     });
 }
 
-export function deleteFeeling(feelingid) {
-    const index = db.findIndex((feeling) => feeling.id === feelingid);
-
-    if (index !== -1) {
-        db.splice(index, 1);
-    }
+export function deleteFeelings() {
+    db = []
 }
