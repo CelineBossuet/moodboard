@@ -1,4 +1,6 @@
 import {fail, redirect} from "@sveltejs/kit";
+import * as db from '$lib/server/database.js';
+
 
 
 export function load({ cookies }) {
@@ -18,16 +20,20 @@ export const actions = {
     },
     auth: async ({ request, cookies }) => {
         const data = await request.formData();
+        const user = db.getUser(data.get("username"))
+        console.log(user[0])
+        if (user[0].pwd === data.get("password")) {
+            cookies.set('allowed', 'true', {
+                path: '/'
+            });
+            cookies.set('user', data.get('username'), {
+                path: '/'
+            });
+            throw redirect(303, '/');
 
-
-        cookies.set('allowed', 'true', {
-            path: '/'
-        });
-        cookies.set('user', data.get('username'), {
-            path: '/'
-        });
-
-        throw redirect(303, '/');
+        } else {
+            console.log("wrong pwd")
+        }
 
     }
 };

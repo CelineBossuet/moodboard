@@ -10,7 +10,7 @@ Everything you need to build a Svelte project, powered by [`create-svelte`](http
 * améliorer les boutons login, logout (mettre le nom de l'user)
 * bloquer le fait de mettre que du texte
 * rajouter les gif
-* 
+* base de données users pas unique, gestion des erreurs
 
 
 ## Developing

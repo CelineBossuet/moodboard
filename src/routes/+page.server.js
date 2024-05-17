@@ -2,7 +2,7 @@ import * as db from '$lib/server/database.js';
 import {fail, redirect} from '@sveltejs/kit';
 
 export function load({ cookies }) {
-    // console.log(cookies.get('user'))
+    console.log(cookies.get('user'))
     if (!cookies.get('allowed')) {
         throw redirect(307, '/welcome');
     }
