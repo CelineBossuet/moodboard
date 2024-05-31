@@ -10,13 +10,11 @@ export function load({ cookies }) {
 }
 
 export const actions = {
-    login: async ({ cookies}) => {
-        throw redirect(303, '/welcome');
-    },
+
     logout: async ({ cookies}) => {
         cookies.delete('allowed', { path: '/' });
         cookies.delete('user', { path: '/' });
-        throw redirect(303, '/welcome');
+        throw redirect(303, '/signin');
     },
     auth: async ({ request, cookies }) => {
         const data = await request.formData();

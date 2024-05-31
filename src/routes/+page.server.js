@@ -4,7 +4,7 @@ import {fail, redirect} from '@sveltejs/kit';
 export function load({ cookies }) {
     console.log(cookies.get('user'))
     if (!cookies.get('allowed')) {
-        throw redirect(307, '/welcome');
+        throw redirect(307, '/signin');
     }
     console.log("db.getFeelings() : "+db.getFeelings())
     return {
@@ -14,12 +14,12 @@ export function load({ cookies }) {
 
 export const actions = {
     login: async ({ cookies}) => {
-        throw redirect(303, '/welcome');
+        throw redirect(303, '/signin');
     },
     logout: async ({ cookies}) => {
         cookies.delete('allowed', { path: '/' });
         cookies.delete('user', { path: '/' });
-        throw redirect(303, '/welcome');
+        throw redirect(303, '/signin');
     },
     clear: async ({}) => {
         db.deleteFeelings()

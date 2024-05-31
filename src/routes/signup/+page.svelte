@@ -2,6 +2,8 @@
     export let form;
 </script>
 
+<h1>Create your account</h1>
+
 <form method="POST" action="?/signup">
 
     <label>
@@ -26,5 +28,5 @@
 </form>
 <p>
     Already have an account?
-    <a class="link" href="/welcome">Login</a>
+    <a class="link" href="/signin">Login</a>
 </p>
